@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Catering Nabey</string>
+
+    <string name="error_empty">Isi semua data!</string>
+    <string name="error_user_short">Username minimal 3 karakter!</string>
+    <string name="error_pass_short">Password minimal 6 karakter!</string>
+    <string name="menu_title">Ayam Bakar Madu</string>
+    <string name="menu_brand">Catering Nabey</string>
+    <string name="rating_value">4.8</string>
+    <string name="delivery_time">35 min</string>
+    <string name="desc_text">Ayam bakar bumbu madu otentik disajikan dengan nasi hangat, sambal terasi segar, lalapan, dan tahu tempe goreng. Cita rasa manis gurih yang meresap sempurna hingga ke tulang.</string>
+
+    <string name="btn_order">PESAN SEKARANG</string>
+    <string name="btn_back_dashboard">Kembali ke Dashboard</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

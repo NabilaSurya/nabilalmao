@@ -1,0 +1,9 @@
+<resources>
+    <style name="Theme.Nabilalmao" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">#7C3AED</item>
+        <item name="colorPrimaryVariant">#4C1D95</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+        <item name="colorSecondary">#A855F7</item>
+        <item name="colorOnSecondary">#FFFFFF</item>
+    </style>
+</resources>

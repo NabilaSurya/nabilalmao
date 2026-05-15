@@ -82,6 +82,16 @@
                         android:text="MASUK"
                         app:backgroundTint="@color/desa_blue_primary"
                         app:cornerRadius="15dp" />
+
+                    <TextView
+                        android:id="@+id/tvToRegister"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Belum punya akun? Daftar di sini"
+                        android:textColor="@color/desa_blue_dark"
+                        android:layout_marginTop="15dp"
+                        android:layout_gravity="center" />
+
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
         </LinearLayout>

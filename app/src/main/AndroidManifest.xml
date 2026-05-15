@@ -12,22 +12,36 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Nabilalmao"
         android:usesCleartextTraffic="true">
-
+        <activity
+            android:name=".kuis.RegisterActivity"
+            android:exported="false" />
         <activity
             android:name=".pertemuan_6.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".pertemuan_3.LoginActivity" android:exported="false" />
-        <activity android:name=".pertemuan_6.WebViewActivity" android:exported="false" />
-        <activity android:name=".pertemuan_4.DashboardActivity" android:exported="false" />
-        <activity android:name=".pertemuan_4.Custom2Activity" android:exported="false" />
-        <activity android:name=".pertemuan_3.WelcomeActivity" android:exported="false" />
-        <activity android:name=".pertemuan_2.HitungActivity" android:exported="false" />
-
+        <activity
+            android:name=".pertemuan_3.LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".pertemuan_6.WebViewActivity"
+            android:exported="false" />
+        <activity
+            android:name=".pertemuan_4.DashboardActivity"
+            android:exported="false" />
+        <activity
+            android:name=".pertemuan_4.Custom2Activity"
+            android:exported="false" />
+        <activity
+            android:name=".pertemuan_3.WelcomeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".pertemuan_2.HitungActivity"
+            android:exported="false" />
     </application>
+
 </manifest>

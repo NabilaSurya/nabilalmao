@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.nabila_lmao.databinding.ActivityCustom2Binding
-import com.example.nabila_lmao.pertemuan_3.LoginActivity
 
 class Custom2Activity : AppCompatActivity() {
 
@@ -18,20 +17,30 @@ class Custom2Activity : AppCompatActivity() {
         binding = ActivityCustom2Binding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // 2. Gunakan binding untuk mengakses komponen (tvTitle, tvDesc, btnOrder)
+        // 2. Mengambil data dari Intent
         val title = intent.getStringExtra("TITLE")
         val desc = intent.getStringExtra("DESC")
 
-        binding.tvTitle.text = title
-        binding.tvDesc.text = desc
+        // Set judul: Pakai data intent jika ada, kalau tidak pakai default
+        binding.tvTitle.text = title ?: "Balai Desa Utama"
 
-        binding.btnOrder.setOnClickListener {
-            Toast.makeText(this, "Pesanan diproses 🍔", Toast.LENGTH_SHORT).show()
+        // Set Kategori
+        binding.tvCategory.text = "Kategori: Bangunan Publik"
+
+        // FIX: Langsung masukkan teks lengkap jika data 'desc' dari intent kosong
+        if (desc != null) {
+            binding.tvDescription.text = desc
+        } else {
+            binding.tvDescription.text = "Gedung ini merupakan aset utama desa yang berfungsi sebagai pusat administrasi, pertemuan warga, dan pelayanan publik. Dibangun pada tahun 2010 dan telah direnovasi untuk memastikan kenyamanan masyarakat dalam mendapatkan pelayanan administrasi kependudukan."
         }
 
-        // 3. Tombol Kembali ke Login
+        binding.btnOrder.setOnClickListener {
+            Toast.makeText(this, "Membuka Detail Inventaris...", Toast.LENGTH_SHORT).show()
+        }
+
+        // 3. Tombol Kembali
         binding.btnBackToDashboard.setOnClickListener {
-            finish() // Atau arahkan ke DashboardActivity
+            finish()
         }
     }
 }

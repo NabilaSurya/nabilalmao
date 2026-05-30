@@ -13,6 +13,12 @@
         android:theme="@style/Theme.Nabilalmao"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".pertemuan_10.InfoDesaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".pertemuan_9.InventarisActivity"
+            android:exported="false" />
+        <activity
             android:name=".kuis.RegisterActivity"
             android:exported="false" />
         <activity

@@ -6,4 +6,7 @@
         <item name="colorSecondary">#A855F7</item>
         <item name="colorOnSecondary">#FFFFFF</item>
     </style>
+    <style name="ShapeAppearance.ImageView.Corner" parent="">
+        <item name="cornerSize">12dp</item>
+    </style>
 </resources>

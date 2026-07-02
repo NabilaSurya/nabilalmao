@@ -1,17 +1,41 @@
 package com.example.nabila_lmao.pertemuan_4
 
+import android.Manifest
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.example.nabila_lmao.databinding.ActivityCustom2Binding
+import com.example.nabila_lmao.pertemuan_9.InventarisActivity
+import com.example.nabila_lmao.utils.NotificationHelper
+import com.example.nabila_lmao.utils.PermissionHelper
 
 class Custom2Activity : AppCompatActivity() {
 
     private lateinit var binding: ActivityCustom2Binding
 
+    private val notificationPermissionLauncher =
+        registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
+            if (isGranted) {
+                Toast.makeText(this, "Notifikasi diizinkan", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(this, "Notifikasi ditolak", Toast.LENGTH_SHORT).show()
+            }
+        }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        if (PermissionHelper.isNotificationPermissionRequired()) {
+            val permission = Manifest.permission.POST_NOTIFICATIONS
+            if (!PermissionHelper.hasPermission(this, permission)) {
+                PermissionHelper.requestPermission(
+                    notificationPermissionLauncher,
+                    permission
+                )
+            }
+        }
 
         // 1. Inisialisasi binding
         binding = ActivityCustom2Binding.inflate(layoutInflater)
@@ -35,7 +59,16 @@ class Custom2Activity : AppCompatActivity() {
         }
 
         binding.btnOrder.setOnClickListener {
-            Toast.makeText(this, "Membuka Detail Inventaris...", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, InventarisActivity::class.java)
+
+            //startActivity(intent)
+
+            NotificationHelper.showNotification(
+                this, //Jika panggil di fragment maka requireContext()
+                "Halaman Detail Inventaris",
+                "Halo, silahkan dibukaa",
+                intent
+            )
         }
 
         // 3. Tombol Kembali

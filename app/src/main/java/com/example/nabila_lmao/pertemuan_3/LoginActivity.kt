@@ -1,6 +1,6 @@
 package com.example.nabila_lmao.pertemuan_3
 
-import android.content.Context // Tambahkan ini
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
@@ -17,22 +17,20 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // 1. Inisialisasi View Binding
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // 2. Navigasi ke Halaman Register
+        // NAVIGASI KE REGISTER
         binding.tvToRegister.setOnClickListener {
-            val intent = Intent(this, RegisterActivity::class.java)
-            startActivity(intent)
+            startActivity(Intent(this, RegisterActivity::class.java))
         }
 
-        // 3. Logika Tombol Login
+        // LOGIN BUTTON
         binding.btnLogin.setOnClickListener {
+
             val user = binding.etUsername.text.toString().trim()
             val pass = binding.etPassword.text.toString().trim()
 
-            // Ambil data dari SharedPreferences hasil Registrasi
             val sharedPref = getSharedPreferences("BinaDesaPrefs", Context.MODE_PRIVATE)
             val savedUser = sharedPref.getString("saved_user", null)
             val savedPass = sharedPref.getString("saved_pass", null)
@@ -41,27 +39,30 @@ class LoginActivity : AppCompatActivity() {
                 user.isEmpty() || pass.isEmpty() -> {
                     showToast("Harap isi username dan password!")
                 }
+
                 user.length < 3 -> {
                     showToast("Username minimal 3 karakter")
                 }
+
                 else -> {
-                    // Terapkan Rule Login
-                    val isRulePraktikum = (user == pass) // Rule: Username sama dengan Password
-                    val isRuleRegister = (user == savedUser && pass == savedPass) // Rule: Sesuai data Register
+
+                    val isRulePraktikum = (user == pass)
+                    val isRuleRegister = (user == savedUser && pass == savedPass)
 
                     if (isRulePraktikum || isRuleRegister) {
-                        // SIMPAN SESSION
+
+                        // SESSION (tetap kamu pakai)
                         val session = SessionManager(this)
                         session.saveLoginStatus(true, user)
 
                         showToast("Selamat Datang, $user!")
 
-                        // PINDAH KE DASHBOARD
                         val intent = Intent(this, DashboardActivity::class.java)
+                        intent.putExtra("USERNAME", user)
                         startActivity(intent)
                         finish()
+
                     } else {
-                        // Jika kedua rule di atas tidak terpenuhi
                         showToast("Username atau Password salah!")
                     }
                 }

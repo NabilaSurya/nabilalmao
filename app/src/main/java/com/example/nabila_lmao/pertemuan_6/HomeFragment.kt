@@ -3,6 +3,7 @@ package com.example.nabila_lmao.pertemuan_6
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -27,12 +28,20 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // Ambil username dari Bundle
+        val username = arguments?.getString("USERNAME") ?: "Admin Aset"
+
+        // Tampilkan ke TextView
+        val tvWelcome = view.findViewById<TextView>(R.id.tvWelcome)
+        tvWelcome.text = "Halo $username,"
+
         val btn1 = view.findViewById<MaterialButton>(R.id.btn1)
         val btn2 = view.findViewById<MaterialButton>(R.id.btn2)
         val btnWelcome = view.findViewById<MaterialButton>(R.id.btnWelcome)
         val btnInventaris = view.findViewById<MaterialButton>(R.id.btnInventaris)
         val btn3 = view.findViewById<MaterialButton>(R.id.btn3)
         val btnInfoDesa = view.findViewById<MaterialButton>(R.id.btnInfoDesa)
+        val btnLogout = view.findViewById<MaterialButton>(R.id.btnLogout)
 
         recyclerView = view.findViewById(R.id.recyclerViewNews)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
@@ -49,7 +58,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
         btnWelcome.setOnClickListener {
             val intent = Intent(requireContext(), WelcomeActivity::class.java)
-            intent.putExtra("USERNAME", "Nabila")
+            intent.putExtra("USERNAME", username)
             startActivity(intent)
         }
 
@@ -64,6 +73,10 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         btnInfoDesa.setOnClickListener {
             startActivity(Intent(requireContext(), InfoDesaActivity::class.java))
         }
+        btnLogout.setOnClickListener {
+            (activity as? com.example.nabila_lmao.pertemuan_4.DashboardActivity)
+                ?.showLogoutDialog()
+        }
     }
 
     private fun loadNews() {
@@ -75,21 +88,14 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                     call: Call<List<News>>,
                     response: Response<List<News>>
                 ) {
-
                     if (response.isSuccessful) {
-
                         response.body()?.let {
-
-                            recyclerView.adapter =
-                                NewsAdapter(it.take(10))
+                            recyclerView.adapter = NewsAdapter(it.take(10))
                         }
                     }
                 }
 
-                override fun onFailure(
-                    call: Call<List<News>>,
-                    t: Throwable
-                ) {
+                override fun onFailure(call: Call<List<News>>, t: Throwable) {
                     t.printStackTrace()
                 }
             })

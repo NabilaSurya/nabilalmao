@@ -3,6 +3,10 @@ package com.example.nabila_lmao.pertemuan_4
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.widget.TextView
+import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -24,12 +28,19 @@ class DashboardActivity : AppCompatActivity() {
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
 
-        supportActionBar?.title = "Bina Desa - Dashboard"
+        val username = intent.getStringExtra("USERNAME") ?: "Admin Aset"
 
-        // Default Fragment
+        val bundle = Bundle()
+        bundle.putString("USERNAME", username)
+
+        val fragment = HomeFragment()
+        fragment.arguments = bundle
+
         supportFragmentManager.beginTransaction()
-            .replace(R.id.fragment_container, HomeFragment())
+            .replace(R.id.fragment_container, fragment)
             .commit()
+
+        supportActionBar?.title = "Bina Desa - Dashboard"
 
         // Bottom Navigation
         val bottomNav =
@@ -69,6 +80,28 @@ class DashboardActivity : AppCompatActivity() {
                 else -> false
             }
         }
+    }
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.main_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        when (item.itemId) {
+
+            R.id.action_search -> {
+                Toast.makeText(this, "Menu Search", Toast.LENGTH_SHORT).show()
+                return true
+            }
+
+            R.id.action_settings -> {
+                Toast.makeText(this, "Menu Settings", Toast.LENGTH_SHORT).show()
+                return true
+            }
+        }
+
+        return super.onOptionsItemSelected(item)
     }
 
     // Function Logout

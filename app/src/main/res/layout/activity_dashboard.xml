@@ -14,6 +14,24 @@
         app:titleTextColor="@color/white"
         android:elevation="4dp" />
 
+    <!-- Container Header (TAMBAHAN WRAPPER) -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@id/toolbar"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/tvHello"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Halo Admin Aset,"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"/>
+    </LinearLayout>
+
     <!-- Container Fragment -->
     <FrameLayout
         android:id="@+id/fragment_container"

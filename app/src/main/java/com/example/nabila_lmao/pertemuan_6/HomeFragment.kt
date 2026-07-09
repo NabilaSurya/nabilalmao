@@ -12,6 +12,8 @@ import com.example.nabila_lmao.pertemuan_10.InfoDesaActivity
 import com.example.nabila_lmao.pertemuan_11.News
 import com.example.nabila_lmao.pertemuan_11.NewsAdapter
 import com.example.nabila_lmao.pertemuan_11.RetrofitClient
+import com.example.nabila_lmao.pertemuan_12.InventarisRoomActivity
+import com.example.nabila_lmao.pertemuan_13.ThirteenthActivity
 import com.example.nabila_lmao.pertemuan_2.HitungActivity
 import com.example.nabila_lmao.pertemuan_3.WelcomeActivity
 import com.example.nabila_lmao.pertemuan_4.Custom2Activity
@@ -39,9 +41,12 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         val btn2 = view.findViewById<MaterialButton>(R.id.btn2)
         val btnWelcome = view.findViewById<MaterialButton>(R.id.btnWelcome)
         val btnInventaris = view.findViewById<MaterialButton>(R.id.btnInventaris)
+        val btnInventarisRoom =
+            view.findViewById<MaterialButton>(R.id.btnInventarisRoom)
         val btn3 = view.findViewById<MaterialButton>(R.id.btn3)
         val btnInfoDesa = view.findViewById<MaterialButton>(R.id.btnInfoDesa)
         val btnLogout = view.findViewById<MaterialButton>(R.id.btnLogout)
+        val btnPertemuan13=view.findViewById<MaterialButton>(R.id.btnPertemuan13)
 
         recyclerView = view.findViewById(R.id.recyclerViewNews)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
@@ -65,6 +70,21 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         btnInventaris.setOnClickListener {
             startActivity(Intent(requireContext(), InventarisActivity::class.java))
         }
+        btnInventarisRoom.setOnClickListener {
+            startActivity(
+                Intent(
+                    requireContext(),
+                    InventarisRoomActivity::class.java
+                )
+            )
+        }
+        btnPertemuan13.setOnClickListener{
+
+            startActivity(
+                Intent(requireContext(), ThirteenthActivity::class.java)
+            )
+
+        }
 
         btn3.setOnClickListener {
             startActivity(Intent(requireContext(), WebViewActivity::class.java))
@@ -77,6 +97,8 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             (activity as? com.example.nabila_lmao.pertemuan_4.DashboardActivity)
                 ?.showLogoutDialog()
         }
+
+
     }
 
     private fun loadNews() {
